@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contador</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f2f4f8;
+    }
+    #valor {
+      font-size: 5rem;
+      margin: 0 0 1.5rem;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 0.6rem 1.2rem;
+      margin: 0 0.3rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #3b5bdb;
+      color: #fff;
+    }
+    button:hover { background: #2f4ac0; }
+    #btnReiniciar { background: #868e96; }
+  </style>
+</head>
+<body>
+  <h1 id="valor">0</h1>
+  <div>
+    <button id="btnRestar">− Restar</button>
+    <button id="btnReiniciar">Reiniciar</button>
+    <button id="btnSumar">+ Sumar</button>
+  </div>
+
+  <script>
+    // Clase: plantilla para crear contadores
+    class Contador {
+      // El constructor se ejecuta al crear el objeto con "new"
+      constructor(idElemento) {
+        this.valor = 0;                                   // estado del contador
+        this.elemento = document.getElementById(idElemento); // elemento HTML donde se muestra
+        this.mostrar();
+      }
+
+      // Métodos: lo que el contador sabe hacer
+      sumar()     { this.valor++;    this.mostrar(); }
+      restar()    { this.valor--;    this.mostrar(); }
+      reiniciar() { this.valor = 0;  this.mostrar(); }
+
+      // Actualiza el contenido HTML con el valor actual
+      mostrar() {
+        this.elemento.textContent = this.valor;
+      }
+    }
+
+    // Crear el objeto (instancia)
+    const contador = new Contador("valor");
+
+    // Conectar los botones con los métodos mediante eventos
+    document.getElementById("btnSumar")
+      .addEventListener("click", () => contador.sumar());
+    document.getElementById("btnRestar")
+      .addEventListener("click", () => contador.restar());
+    document.getElementById("btnReiniciar")
+      .addEventListener("click", () => contador.reiniciar());
+  </script>
+</body>
+</html>
